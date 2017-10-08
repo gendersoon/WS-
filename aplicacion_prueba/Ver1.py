@@ -12,27 +12,24 @@ BD = declarative_base()
 
 class User(BD):
     __tablename__ = "User"
-
     userName = Column('userName', String, primary_key=True)
     descUser = Column('descUser', String)
     Communities = Column('Communities', String)
-    Activities = Column('Activities', String)
 
-class Respuesta(BD):
-    __tablename__ = "Respuesta"
-
-    idRespu = Column('idRespu', Integer, primary_key=True)
+class Answer(BD):
+    __tablename__ = "Answer"
+    id = Column('id', Integer, primary_key=True)
+    idPregunta = Column('idPregunta',Integer)
     Respuesta = Column('Respuesta', String)
-    descRespu = Column('descRespu', String)
+    fecha = Column('descRespu', String)
     userNameRespuesta = Column('userNameRespuesta', String, ForeignKey("User.userName"), nullable=False)
 
-class Pregunta(BD):
-    __tablename__ = "Pregunta"
-
-    idPregun = Column('idPregun', Integer, primary_key=True)
+class Question(BD):
+    __tablename__ = "Question"
+    id = Column('id', Integer, primary_key=True)
     Pregunta = Column('Pregunta', String)
     descPregun = Column('descPregun', String)
-    userNamePregunta = Column('userNamePregunta', String, ForeignKey("User.userName"), nullable=False)
+userNamePregunta = Column('userNamePregunta', String, ForeignKey("User.userName"), nullable=False)
 
 engine = create_engine('sqlite:///ComunidadStack.db', echo=True)
 
